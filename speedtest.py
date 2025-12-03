@@ -1705,6 +1705,17 @@ def csv_header(delimiter=','):
 
     printer(SpeedtestResults.csv_header(delimiter=delimiter))
     sys.exit(0)
+def print_kitty():
+    kitty = """
+
+ /\\_/\\
+
+( o.o )
+
+ > ^ <
+
+"""
+    printer(kitty)
 
 
 def parse_args():
@@ -1741,6 +1752,8 @@ def parse_args():
     parser.add_argument('--share', action='store_true',
                         help='Generate and provide a URL to the speedtest.net '
                              'share results image, not displayed with --csv')
+    parser.add_argument('--kitty', action='store_true',
+                             help='Print ASCII kitty and exit')
     parser.add_argument('--simple', action='store_true', default=False,
                         help='Suppress verbose output, only show basic '
                              'information')
@@ -1845,6 +1858,10 @@ def shell():
     # Print the version and exit
     if args.version:
         version()
+
+    if args.kitty:
+        print_kitty()
+        sys.exit(0)
 
     if not args.download and not args.upload:
         raise SpeedtestCLIError('Cannot supply both --no-download and '
